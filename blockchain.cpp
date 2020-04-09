@@ -106,8 +106,8 @@ bool Blockchain::createCandidate(char* name, char* id, char* group, char* addres
 
 size_t Blockchain::writeCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
+	((std::string*)userp)->append((char*)contents, size * nmemb);
+	return size * nmemb;
 }
 
 std::string Blockchain::getApi(char* url) 
@@ -145,29 +145,29 @@ std::string Blockchain::getApiWithHeaders(char* url)
 std::string Blockchain::decryptAES(std::string key, unsigned char* enc_msg) 
 {
 	size_t len = sizeof(enc_msg);
-    unsigned char aes_key[AES_KEYLENGTH];
-    memset(aes_key, 0, AES_KEYLENGTH/8);
-    strcpy((char*) aes_key, key.c_str());
+	unsigned char aes_key[AES_KEYLENGTH];
+	memset(aes_key, 0, AES_KEYLENGTH/8);
+	strcpy((char*) aes_key, key.c_str());
 
 	/* init vector */
-    unsigned char iv[AES_BLOCK_SIZE];
-    memset(iv, 0x00, AES_BLOCK_SIZE);
+	unsigned char iv[AES_BLOCK_SIZE];
+	memset(iv, 0x00, AES_BLOCK_SIZE);
 
 	// buffers for encryption and decryption
 	const size_t encslength = ((len + AES_BLOCK_SIZE) / AES_BLOCK_SIZE) * AES_BLOCK_SIZE;
-    unsigned char dec_out[len];
-    memset(dec_out, 0, sizeof(dec_out));
+	unsigned char dec_out[len];
+	memset(dec_out, 0, sizeof(dec_out));
 
-    AES_KEY dec_key;
+	AES_KEY dec_key;
 
-    AES_set_decrypt_key(aes_key, AES_KEYLENGTH, &dec_key);
-    AES_cbc_encrypt(enc_msg, dec_out, encslength, &dec_key, iv, AES_DECRYPT);
+	AES_set_decrypt_key(aes_key, AES_KEYLENGTH, &dec_key);
+	AES_cbc_encrypt(enc_msg, dec_out, encslength, &dec_key, iv, AES_DECRYPT);
 
 	std::stringstream ss;
-    for(int i = 0; i < encslength; i++)
-    {
-        ss << dec_out[i];
-    }
+	for(int i = 0; i < encslength; i++)
+	{
+		ss << dec_out[i];
+	}
 
 	return ss.str();
 }
@@ -176,22 +176,22 @@ bool Blockchain::encryptAES(std::string key, std::string msg, unsigned char* enc
 {
 	size_t inputslength = msg.length();
 	unsigned char aes_input[inputslength];
-    unsigned char aes_key[AES_KEYLENGTH];
+	unsigned char aes_key[AES_KEYLENGTH];
 	memset(aes_input, 0, inputslength/8);
-    memset(aes_key, 0, AES_KEYLENGTH/8);
-    strcpy((char*) aes_input, msg.c_str());
-    strcpy((char*) aes_key, key.c_str());
+	memset(aes_key, 0, AES_KEYLENGTH/8);
+	strcpy((char*) aes_input, msg.c_str());
+	strcpy((char*) aes_key, key.c_str());
 
 	/* init vector */
-    unsigned char iv[AES_BLOCK_SIZE];
-    memset(iv, 0x00, AES_BLOCK_SIZE);
+	unsigned char iv[AES_BLOCK_SIZE];
+	memset(iv, 0x00, AES_BLOCK_SIZE);
 
 	// buffers for encryption and decryption
-    memset(enc_out, 0, sizeof(enc_out));
+	memset(enc_out, 0, sizeof(enc_out));
 
-    AES_KEY enc_key, dec_key;
-    AES_set_encrypt_key(aes_key, AES_KEYLENGTH, &enc_key);
-    AES_cbc_encrypt(aes_input, enc_out, inputslength, &enc_key, iv, AES_ENCRYPT);
+	AES_KEY enc_key, dec_key;
+	AES_set_encrypt_key(aes_key, AES_KEYLENGTH, &enc_key);
+	AES_cbc_encrypt(aes_input, enc_out, inputslength, &enc_key, iv, AES_ENCRYPT);
 
 	return true;
 }
