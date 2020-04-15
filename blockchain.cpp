@@ -7,19 +7,19 @@
 
 #define IDX_FOR_TRUE_RETURN 		11
 #define IDX_FOR_PUBLICKEY_RETURN 	12
-#define VALID_ADDR_LEN 				42
-#define ADMIN_ADDR 					"0x21C2FA9a2779b94D610f807daB838E17725B30A3"
-#define ADMIN_PASS 					"testobc123"
-#define CONTRACT_ADDR 				"0xE6673A9e4832D539c58AB1DdBDE952C19F326cD1"
+#define VALID_ADDR_LEN 			42
+#define ADMIN_ADDR 			"0x21C2FA9a2779b94D610f807daB838E17725B30A3"
+#define ADMIN_PASS 			"testobc123"
+#define CONTRACT_ADDR 			"0xE6673A9e4832D539c58AB1DdBDE952C19F326cD1"
 
 #define IH_URL_BASIC 	"https://integrationhub.okwave.global/api"
-#define IH_URL_SC 		IH_URL_BASIC "/eththor/id=1"
+#define IH_URL_SC 	IH_URL_BASIC "/eththor/id=1"
 #define IH_URL_SC_PARAM IH_URL_BASIC "/eththor/id=2"
-#define IH_URL_RT 		IH_URL_BASIC "/registerToken"
-#define IH_URL_GK 		IH_URL_BASIC "/generateKey"
-#define IH_URL_GB 		IH_URL_BASIC "/ethtestnetthor/web3.eth/getBalance"
-#define IH_URL_CA 		IH_URL_BASIC "/ethtestnetthor/web3.eth.personal/newAccount"
-#define IH_URL_UA 		IH_URL_BASIC "/ethtestnetthor/web3.eth.personal/unlockAccount"
+#define IH_URL_RT 	IH_URL_BASIC "/registerToken"
+#define IH_URL_GK 	IH_URL_BASIC "/generateKey"
+#define IH_URL_GB 	IH_URL_BASIC "/ethtestnetthor/web3.eth/getBalance"
+#define IH_URL_CA 	IH_URL_BASIC "/ethtestnetthor/web3.eth.personal/newAccount"
+#define IH_URL_UA 	IH_URL_BASIC "/ethtestnetthor/web3.eth.personal/unlockAccount"
 
 #define SERVER_PUBKEY  "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC407pBSKDb6vsSkiNadIjOrNjA\nlMuTIMVlaCUo/coEBa+fNfzSm91eqCcrT/GI6j7m0zBJWcPGUjKNUG3l5dVLS0Jm\nf4uWgmXtWNF0of2TPU1XzBJUHlCBpkMXvdkJQfwpXV395Lu1F0Qyl6jpf/bEeJnE\nu2XsZk/OJPYHAAg7DQIDAQAB\n-----END PUBLIC KEY-----";
 #define CLIENT_PUBKEY  "-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUQODnt7VZq5v9qOqQFzuzpl85tuow2o4ouKLckPDqn7ulTj/VuQKJzHcMR88e/U2VO7MX78YmfqRVwIHtJKEx2N3eY1CX7sKvzBxKAzJmdkQjrsbgd2Jv5989Z8TawijazIkfqiM49CTQ2+siGqWK+ysnNhqfxzLHIa/ey8B6VwIDAQAB-----END PUBLIC KEY-----";
