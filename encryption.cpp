@@ -26,10 +26,21 @@ static const std::string base64_chars =
              "0123456789+/";
 
 
+/**
+ * Private method to check type base64.
+ * @param c is the character to check.
+ * @return true if base64
+ */
 static inline bool is_base64(unsigned char c) {
   return (isalnum(c) || (c == '+') || (c == '/'));
 }
 
+/**
+ * Private method to encode base64.
+ * @param bytes_to_encode is the bytes to encode.
+ * @param in_len is the length of bytes to encode.
+ * @return base64 encoded bytes
+ */
 std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_len) {
     std::string ret;
     int i = 0;
@@ -73,6 +84,11 @@ std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_
 
 }
 
+/**
+ * Private method to decode base64.
+ * @param bytes_to_encode is the string to decode.
+ * @return base64 decoded
+ */
 std::string base64_decode(std::string const& encoded_string) {
     int in_len = encoded_string.size();
     int i = 0;
@@ -114,6 +130,18 @@ std::string base64_decode(std::string const& encoded_string) {
   return ret;
 }
 
+void handleErrors(void)
+{
+    ERR_print_errors_fp(stderr);
+    abort();
+}
+
+/**
+ * Private method to decrypt using AES.
+ * @param key is the key for decryption.
+ * @param enc_msg is the message to decrypt.
+ * @return decrypted message.
+ */
 std::string decryptAES(unsigned char* key, unsigned char* enc_msg) 
 {
 	size_t len = strlen((char*)enc_msg);
@@ -145,12 +173,13 @@ std::string decryptAES(unsigned char* key, unsigned char* enc_msg)
 	return temp.substr(idx_start + 1, idx_end - idx_start);
 }
 
-void handleErrors(void)
-{
-    ERR_print_errors_fp(stderr);
-    abort();
-}
-
+/**
+ * Private method to encrypt using AES.
+ * @param key is the key for encryption.
+ * @param msg is the message to encrypt.
+ * @param enc_msg is the encrypted message.
+ * @return is the encryption length.
+ */
 int encryptAES(std::string key, std::string msg, unsigned char* enc_msg) 
 {
 	/* Validation
@@ -196,18 +225,40 @@ int encryptAES(std::string key, std::string msg, unsigned char* enc_msg)
     return ciphertext_len;
 }
 
+/**
+ * Private method to encyrpt using RSA.
+ * @param flen is the length of data to encrypt.
+ * @param from is the data to encrypt.
+ * @param to is the encrypted data.
+ * @param key is the RSA public key.
+ * @return length of encrypted message.
+ */
 int public_encrypt(int flen, unsigned char* from, unsigned char* to, RSA* key) 
 {	
     int result = RSA_public_encrypt(flen, from, to, key, RSA_PKCS1_OAEP_PADDING);
     return result;
 }
 
+/**
+ * Private method to decrypt using RSA.
+ * @param flen is the length of data to decrypt.
+ * @param from is the data to decrypt.
+ * @param to is the decrypted data.
+ * @param key is the RSA private key.
+ * @return length of decrypted message.
+ */
 int private_decrypt(int flen, unsigned char* from, unsigned char* to, RSA* key) 
 {
     int result = RSA_private_decrypt(flen, from, to, key, RSA_PKCS1_OAEP_PADDING);
     return result;
 }
 
+/**
+ * Private method to generate RSA key.
+ * @param key is the public or private key.
+ * @param isPublic is true if public key.
+ * @return RSA key.
+ */
 RSA * createRSA(unsigned char * key, bool isPublic)
 {
 	/* Validation
@@ -234,6 +285,12 @@ RSA * createRSA(unsigned char * key, bool isPublic)
     return rsa;
 }
 
+/**
+ * Private method to convert string to hex.
+ * @param str is the string.
+ * @param len is the length of string.
+ * @return hex.
+ */
 char * strToHex(unsigned char *str, int len){
   char *buffer = new char[len*2+1];
   char *pbuffer = buffer;
@@ -244,6 +301,11 @@ char * strToHex(unsigned char *str, int len){
   return buffer;
 }
 
+/**
+ * Private method to convert char to integer.
+ * @param input is the char.
+ * @return integer.
+ */
 int charToInt(char input)
 {
   if(input >= '0' && input <= '9')
@@ -255,6 +317,11 @@ int charToInt(char input)
   throw std::invalid_argument("Invalid input string");
 }
 
+/**
+ * Private method to convert hex to binary.
+ * @param src is the hex.
+ * @param target is the binary.
+ */
 void hexToBin(const char* src, char* target)
 {
   while(*src && src[1])

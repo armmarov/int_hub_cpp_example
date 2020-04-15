@@ -14,30 +14,11 @@ public:
     bool registerToken();
     bool generateKey();
     std::string createAccounts(char* id);
-    bool unlockAccounts(char* addr, char* pass);
+    std::string getBalance(char* addr);
+    bool unlockAccounts(char* addr, char* pass);    
 
-    bool createCandidate(char* name, char* id, char* group, char* address);
-    bool createVoter(char* name, char* id, char* address);
-
-    bool removeCandidate(char* address);
-    bool removeVoter(char* address);
-
-    bool getCandidateByID(char* id);
-    bool getVoterByID(char* id);
-
-    bool getAllCandidates();
+    bool addToVoter(char* name, char* id, char* address);
     bool getAllVoters();
-
-    bool registerEvent(char* name, char* location, uint32_t date, uint8_t period);
-    bool getEvent(char* name);
-    bool getCandidateByEvent(char* id);
-    bool addCandidateToEvent(char* address);
-    bool removeCandidateFromEvent(char* address);
-
-    bool castVoting(char* candidate, char* id);
-    bool getResultByCandidate(char* candidate, char* id);
-
-    bool testCall();
 
 private:
 
@@ -50,6 +31,7 @@ private:
     std::string access_token;
     std::string client_pubkey;
     std::string client_privkey;
+    std::string server_pubkey;
 
     // Private Functions
     void init();
