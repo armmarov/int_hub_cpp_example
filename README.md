@@ -5,5 +5,6 @@
 2. Install openssl library
 
 ## Execute test code
+$ mkdir bin
 $ make unit_test
-$ ./blockchain
+$ ./bin/blockchain
