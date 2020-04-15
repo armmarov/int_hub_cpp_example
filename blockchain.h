@@ -13,6 +13,8 @@ public:
     // Public Functions
     bool registerToken();
     bool generateKey();
+    std::string createAccounts(char* id);
+    bool unlockAccounts(char* addr, char* pass);
 
     bool createCandidate(char* name, char* id, char* group, char* address);
     bool createVoter(char* name, char* id, char* address);
@@ -54,9 +56,7 @@ private:
 	static size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp);
     std::string getApi(char* url);
     std::string getApiWithHeaders(char* url);
-
-    bool encryptAES(std::string key, std::string msg, unsigned char* out);
-    std::string decryptAES(std::string key, unsigned char* enc_msg);
+    std::string postApiWithHeaders(char* url, std::string postdata);
 };
 
 #endif
